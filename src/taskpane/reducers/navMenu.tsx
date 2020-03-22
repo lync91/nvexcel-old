@@ -5,8 +5,6 @@ const INITIAL_STATE = {
 };
 
 const navMenu = (state = INITIAL_STATE, action) => {
-    console.log(action);
-    
     switch (action.type) {
         case 'getData':
             return {

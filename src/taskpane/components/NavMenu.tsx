@@ -61,11 +61,6 @@ class NavMenu extends React.Component<AppProps, AppState> {
                     url: '',
                     key: 'about',
                     target: '',
-                    // onClick: () => {
-                    //   // history.push('/about')
-                    //   history.push("/about")
-                    //   this.props.dismissPanel();
-                    // }
                   },
                   {
                     name: 'MSN',
@@ -147,8 +142,6 @@ class NavMenu extends React.Component<AppProps, AppState> {
 //   }
 // }
 const mapStateToProps = (state) => {
-  console.log(state);
-  
   return {
     selectedKey: state.navMenu.selectedKey
   }

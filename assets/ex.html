@@ -1,0 +1,447 @@
+<html>
+
+<!-- Mirrored from font.ssc.vn/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 21 Mar 2020 04:08:03 GMT -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+
+<head>
+  <title>Chuong Trinh Chuyen Van Ban Qua Mang www.Hanhchinhvn.Com</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="keywords"
+    content="sinh vi�n, h�nh ch�nh, hoc vien hanh chinh quoc gia, phap luat, chinh sach, chinh phu, cai cach hanh chinh, sinh vien hanh chinh, ">
+  <meta name="description" content="Website Sinh vien Hoc vien Hanh chinh quoc gia">
+  <style type="text/css">
+    body {
+      font-family: Verdana, Arial;
+      font-size: 10pt;
+    }
+
+    textarea {
+      font-family: Verdana, Arial;
+      font-size: 10pt;
+    }
+
+    input {
+      font-family: Verdana, Arial;
+      font-size: 9pt;
+      font-weight: bold;
+      border-width: 1;
+    }
+
+    select {
+      font-family: Verdana, Arial;
+      font-size: 10pt;
+    }
+
+    td {
+      font-family: Verdana, Arial;
+      font-size: 10pt;
+    }
+
+    .bold {
+      font-family: Verdana, Arial;
+      font-size: 8pt;
+    }
+
+    .disabled {
+      font-family: Verdana, Arial;
+      color: #A0A0A0
+    }
+  </style>
+  <script language="JavaScript1.2" src="js/vietuni_vn.js" type='text/javascript'></script>
+  <!-- <script language="JavaScript1.2" src="js/vumods_vn.js" type='text/javascript'></script> -->
+  <!-- <script language="JavaScript1.2" src="js/vumaps_vn.js" type='text/javascript'></script> -->
+  <!-- <script language="JavaScript1.2" src="js/vumaps2_vn.js" type='text/javascript'></script> -->
+  <SCRIPT>
+    function initVU(form) {
+      var arr = []
+      for (var i = 1; i < maps.length; i++) {
+        var mstr = maps.names[i];
+        var sel = (i == 1);
+        console.log(mstr);
+        // console.log(sel);
+        arr.push(mstr)
+        console.log(arr);
+        
+        form.curmap.options[i - 1] = new Option(mstr, mstr, sel, sel);
+        form.destmap.options[i - 1] = new Option(mstr, mstr, sel, sel);
+      }
+      setTypingMode(1);
+      form.TELEX.onclick = function () {
+        setTypingMode(1);
+      }
+      form.VNI.onclick = function () {
+        setTypingMode(2);
+      }
+      form.VIQR.onclick = function () {
+        setTypingMode(3);
+      }
+      form.LOAN.onclick = function () {
+        setTypingMode(4);
+      }
+      form.OFF.onclick = function () {
+        setTypingMode(0);
+      }
+      form.onclick = function () {
+        this.spella.disabled = !(this.TELEX.checked || this.LOAN.checked);
+        return true;
+      }
+      form.checkAccent.onclick = function () {
+        convertAtOnce(this.form.vArea);
+        return true;
+      }
+      form.spella.onclick = function () {
+        loadSpellA(this.checked);
+        return true;
+      }
+      form.spellb.onclick = function () {
+        loadSpellB(this.form.vArea);
+        return true;
+      }
+      form.replace.onclick = function () {
+        loadSpellB(this.form.vArea, 1);
+        return true;
+      }
+      form.curmap.onclick = function () {
+        setCharMap(this.options[this.options.selectedIndex].value);
+        return true;
+      }
+      form.detectEnc.onclick = function () {
+        var id = detectMap(this.form.vArea);
+        if (id) this.form.curmap.options[id - 1].selected = true;
+        return true;
+      }
+      form.convertTo.onclick = function () {
+        // var sel = this.form.destmap.options.selectedIndex;
+        // var destID = this.form.destmap.options[sel].value;
+        // var converted = convertTo(this.form.vArea, destID);
+        // if (!converted) return true;
+        // this.form.curmap.options[sel].selected = true;
+        // setCharMap(destID);
+        // return true;
+
+        // if (!txtarea) return 0;
+        if (!vumaps) loadModule(vumapsURI, "vumaps");
+        if (!vumaps) return 0;
+        // setCharMap("UNICODE");
+        var srcmap = initCharMap("VNI-WIN");                        
+        var destmap = initCharMap("UNICODE");
+        var txt= srcmap.convertTxtTo('coäng', destmap);
+        console.log(txt);
+        
+        return 1;
+
+      }
+      form.xoa.onclick = function () {
+        this.form.reset();
+        setTypingMode(1);
+        setCharMap("UNICODE");
+      }
+      form.toUni.onclick = function () {
+        if (!convertArea(this.form.vArea, "UNICODE")) {
+          return alert("Xin loi , khong xac dinh duoc ma , xin vui long thu lai .");
+        }
+        this.form.curmap.options[0].selected = true;
+        setCharMap("UNICODE");
+        return true;
+      }
+      form.correction.onclick = function () {
+        correctArea(this.form.vArea);
+        return true;
+      }
+      form.preview.onclick = function () {
+        preview(this.form.vArea);
+        return true;
+      }
+      form.save.onclick = function () {
+        saveFile(this.form.vArea);
+        return true;
+      }
+
+      return true;
+    }
+
+    function preview(txtarea) {
+      var win = open("");
+      if (!win || !txtarea) return;
+      if (!txtarea.form.curmap.options[0].selected) {
+        win.document.charset = "iso-8859-1";
+      }
+      var closebutton = "<p><center><a href='javascript:close();'><b>&#272;�ng c&#7917;a s&#7893; n�y</b></a></center>"
+      win.document.open();
+      win.document.write(txtarea.value + closebutton);
+      win.document.close();
+    }
+
+    function saveFile(txtarea) {
+      if (!document.all) {
+        alert("Xin loi, trinh duyet web cua ban khong cho phep thuc hien thao tac nay ...");
+        return;
+      }
+      var win = open("", "", "resizable=no,width=500,height=300");
+      if (!txtarea.form.curmap.options[0].selected) {
+        win.document.charset = "iso-8859-1";
+      }
+      win.document.body.innerText = txtarea.value;
+      win.document.execCommand("SaveAs", null, "vanban.html");
+      win.close();
+    }
+  </SCRIPT>
+</head>
+
+<body onload="initVU(document.myForm);">
+  <table style="FILTER: glow(color=000066); FONT: bold 20px verdana" id="table3" width="759">
+    <tr>
+      <TD style="BORDER-BOTTOM: 1px solid; font-size:9pt; font-family:Verdana,Arial" align=right width="767">
+        <H4 style="MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px">
+          <FONT face=Tahoma><B>
+              <FONT size=2 color="#FF0066">
+                <SCRIPT language="" type=text/javascript> <!-- // Array ofmonth Names <!-- var monthNames=new
+                  Array("m&#7897;t","hai","ba","t&#432;","n&#259;m","s�u","b&#7843;y","t�m","ch�n","m&#432;&#7901;i","m&#432;&#7901;i
+                  m&#7897;t","m&#432;&#7901;i hai"); -->
+                  var monthNames = new Array("01","02","03","04","05","06","07","08","09","10","11","12");
+var dayNames = new Array("Ch&#7911; nh&#7853;t","Th&#7913; hai","Th&#7913; ba","Th&#7913; t&#432;","Th&#7913; n&#259;m","Th&#7913; s�u","Th&#7913; b&#7843;y")
+var now = new Date();
+thisYear = now.getYear();
+thisDay = dayNames[now.getDay()];
+if(thisYear < 1900) {thisYear += 1900}; // corrections if Y2K display problem
+document.write("H�m nay : " + thisDay +" "+ now.getDate() + " th�ng " + monthNames[now.getMonth()] + " n&#259;m " + thisYear);
+// -->
+</SCRIPT>
+              </FONT>
+            </B></FONT>
+        </H4>
+      </TD>
+      <td height="20" width="1" style="font-size: 9pt; font-family:Verdana,Arial"></td>
+    </tr>
+    <tr>
+      <td style="font-family: Verdana,Arial; font-size: 10pt">
+        <font style="FONT-SIZE: 16pt" color="#FF3399">
+          <p align="center">&nbsp;<p align="center">Ch&#432;&#417;ng tr�nh g� v� chuy&#7875;n m� v&#259;n b&#7843;n
+              ti&#7871;ng Vi&#7879;t
+        </font>
+      </td>
+    </tr>
+  </table>
+  <table style="FILTER: glow(color=6699ff); FONT: bold 20px verdana" id="table4">
+    <tr>
+      <td style="font-family: Verdana,Arial; font-size: 10pt">
+        <font color="#FF3399" face="Tahoma" size="2">
+          <p align="center"><u>C�ch s&#7917; d&#7909;ng</u> :
+        </font>
+      </td>
+    </tr>
+  </table>
+  <ul>
+    <li>
+      <p align="justify">
+        <font face="Tahoma" size="2">C�c b&#7841;n c� th&#7875; g� v&#259;n b&#7843;n
+          tr&#7921;c ti&#7871;p &#7903; &#273;�y m� kh�ng c&#7847;n d�ng b&#7845;t c&#7913; b&#7897; g� n�o . N&#7871;u
+          b&#7897; g� b&#7841;n &#273;ang d�ng
+          c� c�ng ki&#7875;u g� v&#7899;i ch&#432;&#417;ng tr�nh th� c� th&#7875; b&#7841;n kh�ng c&#7847;n t&#7855;t
+          b&#7897; g� . C�n
+          n&#7871;u d�ng kh�c ki&#7875;u g� xin c�c b&#7841;n vui l�ng t&#7855;t b&#7897; g� , c� th&#7875; s&#7869;
+          kh�ng th&#7845;y
+          &#273;&#432;&#7907;c ti&#7871;ng Vi&#7879;t . &#272;&#7875; thay &#273;&#7893;i ki&#7875;u g� xin c�c
+          b&#7841;n vui l�ng ch&#7885;n t&#432;&#417;ng &#7913;ng
+          v&#7899;i c�ch g� c&#7911;a b&#7841;n .</font>
+    </li>
+    <li>
+      <p align="justify">
+        <font face="Tahoma" size="2">Ki&#7875;u g� <b>
+            <font color="#FF3399">T&#7921; &#272;&#7897;ng</font>
+          </b> ( ch&#7885;n m&#7863;c &#273;&#7883;nh ) l� ki&#7875;u g� c� th&#7875; g� b&#7857;ng b&#7845;t c&#7913;
+          c�ch n�o c&#361;ng &#273;&#432;&#7907;c : <b>
+            <font color="#6699FF">VNI , VIQR , TELEX</font>
+          </b> .</font>
+    </li>
+    <li>
+      <p align="justify">
+        <font face="Tahoma" size="2">&#272;&#7875; chuy&#7875;n m� v&#259;n b&#7843;n , c�c
+          b&#7841;n vui l�ng <b>
+            <font color="#6699FF">Copy</font>
+          </b> m&#7897;t &#273;o&#7841;n v&#259;n b&#7843;n c&#7847;n chuy&#7875;n sau &#273;�
+          <b>
+            <font color="#6699FF">Paste</font>
+          </b> v�o v�ng nh&#7853;p v&#259;n
+          b&#7843;n . &#272;&#7875; nh&#7853;n d&#7841;ng m� c�c b&#7841;n ch&#7885;n <font color="#FF3399">
+            <b>Nh&#7853;n d&#7841;ng m�</b></font>
+          , &#273;&#7875; chuy&#7875;n m� c�c b&#7841;n vui l�ng ch&#7885;n <b>
+            <font color="#FF3399">&#272;&#7893;i sang
+            </font>
+          </b>. Ch&#432;&#417;ng tr�nh s&#7869; t&#7921; &#273;&#7897;ng chuy&#7875;n &#273;&#7893;i m� cho c�c
+          b&#7841;n . Ngo�i ra
+          c�c b&#7841;n c�n c� th&#7875; ch&#7885;n &#273;&#7875; ghuy&#7875;n sang m� t&#432;&#417;ng &#7913;ng .
+        </font>
+    </li>
+  </ul>
+  <br>
+  <form name="myForm" method="POST" action="https://font.ssc.vn/none">
+    <div align="center">
+      <table bgcolor="#99CCFF" cellpadding=10>
+        <tr>
+          <td>
+            <p align="center">
+              <span style="color:#FFFFFF; height:25">
+                <b>B&#7841;n vui l�ng g� ho&#7863;c Paste v&#259;n b&#7843;n v�o � b�n d&#432;&#7899;i .</b>
+              </span>
+            </p>
+            <table cellpadding='1' cellspacing='0' width="578">
+              <tr>
+                <td colspan=4>
+                  <textarea name="vArea" rows="24" cols="93" onkeyup="initTyper(this);"
+                    style="font-family: Tahoma; font-size: 10pt"></textarea>
+                </td>
+              </tr>
+              <tr bgcolor="#e0e0e0">
+                <td class="bold" colspan='4'>
+                  <input type=radio name="switch" id="LOAN" value="LOAN" checked>T&#7921; &#273;&#7897;ng &nbsp;
+                  <input type=checkbox name="spella" value="ON"> Ki&#7875;m tra ch�nh t&#7843; v� t&#7921;
+                  &#273;&#7897;ng s&#7917;a l&#7841;i t&#7915; ti&#7871;ng Anh b&#7883; l&#7895;i
+                  &nbsp; &nbsp; &nbsp;
+                </td>
+              </tr>
+              <tr>
+                <td class="bold" bgcolor="#e0e0e0">
+                  <input type=radio name="switch" id="VNI" value="VNI">Ki&#7875;u VNI<br>
+                  <input type=radio name="switch" id="VIQR" value="VIQR">Ki&#7875;u VIQR<br>
+                  <input type=radio name="switch" id="TELEX" value="TELEX">Ki&#7875;u TELEX<br>
+                  <input type=radio name="switch" id="OFF" value="OFF">T&#7855;t b&#7897; g�
+                </td>
+                <td colspan=3 valign='center'>
+                  <table cellspacing='1' cellpadding='2' border='0' width='100%'>
+                    <tr bgcolor="#e0e0e0">
+                      <td>
+                        <b>&nbsp;M� &#273;ang d�ng:&nbsp;</b>
+                        <select name="curmap" height=15></select>
+                        <input type="button" value="&#272;&#7893;i sang" name="convertTo">
+                        <select name="destmap"></select>
+                      </td>
+                    </tr>
+                    <tr bgcolor="#e0e0e0">
+                      <td>
+                        <input type="button" value="Nh&#7853;n d&#7841;ng m�" name="detectEnc">
+                        <input type="button" value="To UNICODE" name="toUni">
+                        <input type="button" value="Ph�ng to" name="preview">&nbsp;
+                        <input type="button" value="So�t d&#7845;u" name="checkAccent"></td>
+                    </tr>
+                    <tr bgcolor="#e0e0e0">
+                      <td>
+                        &nbsp;<input type="button" value="S&#7917;a l&#7841;i d&#7845;u" name="correction">
+                        <input type="button" value="S&#7917;a ch�nh t&#7843;" name="spellb">
+                        <input type="button" value="T�m & s&#7917;a" name="replace">&nbsp;<input type="button"
+                          value="L&#432;u file" name="save">
+                        <input type="button" value="Xo�" name="xoa">
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </form>
+</body>
+<SCRIPT LANGUAGE="JavaScript">
+  var osd = "   "
+  osd += "Chao mung cac ban den voi chuong trinh go va chuyen doi van ban tieng Viet qua mang  www.Hanhchinhvn.Com. ";
+  var timer;
+  var msg = "";
+
+  function scrollMaster() {
+    msg = customDateSpring(new Date())
+    clearTimeout(timer)
+    msg += " " + showtime() + " " + osd
+    for (var i = 0; i < 100; i++) {
+      msg = " " + msg;
+    }
+    scrollMe()
+  }
+
+  function scrollMe() {
+    window.status = msg;
+    msg = msg.substring(1, msg.length) + msg.substring(0, 1);
+    timer = setTimeout("scrollMe()", 100);
+  }
+
+  function showtime() {
+    var now = new Date();
+    var hours = now.getHours();
+    var minutes = now.getMinutes();
+    var seconds = now.getSeconds();
+    var months = now.getMonth();
+    var dates = now.getDate();
+    var years = now.getYear();
+    var timeValue = ""
+    timeValue += ((months > 9) ? "" : " ")
+    timeValue += ((dates > 9) ? "" : " ")
+    timeValue = (months + 1)
+    timeValue += "/" + dates
+    timeValue += "/" + years
+    var ap = "Sang ."
+    if (hours == 12) {
+      ap = "Chieu ."
+    }
+    if (hours == 0) {
+      hours = 12
+    }
+    if (hours >= 13) {
+      hours -= 12;
+      ap = "Chieu ."
+    }
+    var timeValue2 = " " + hours
+    timeValue2 += ((minutes < 10) ? ":0" : ":") + minutes + " " + ap
+    return timeValue2;
+  }
+
+  function MakeArray(n) {
+    this.length = n
+    return this
+  }
+  monthNames = new MakeArray(12)
+  monthNames[1] = "Thang Gieng"
+  monthNames[2] = "Thang Hai"
+  monthNames[3] = "Thang Ba"
+  monthNames[4] = "Thang Tu"
+  monthNames[5] = "Thang Nam"
+  monthNames[6] = "Thang Sau"
+  monthNames[7] = "Thang Bay"
+  monthNames[8] = "Thang Tam"
+  monthNames[9] = "Thang Chin"
+  monthNames[10] = "Thang Muoi"
+  monthNames[11] = "Thang Muoi Mot"
+  monthNames[12] = "Thang Muoi Hai"
+  daysNames = new MakeArray(7)
+  daysNames[1] = "Chu Nhat"
+  daysNames[2] = "Thu Hai"
+  daysNames[3] = "Thu Ba"
+  daysNames[4] = "Thu Tu"
+  daysNames[5] = "Thu Nam"
+  daysNames[6] = "Thu Sau"
+  daysNames[7] = "Thu Bay"
+
+  function customDateSpring(oneDate) {
+    var theDay = daysNames[oneDate.getDay() + 1]
+    var theDate = oneDate.getDate()
+    var theMonth = monthNames[oneDate.getMonth() + 1]
+    var dayth = " "
+    if ((theDate == 1) || (theDate == 21) || (theDate == 31)) {
+      dayth = " ";
+    }
+    if ((theDate == 2) || (theDate == 22)) {
+      dayth = " ";
+    }
+    if ((theDate == 3) || (theDate == 23)) {
+      dayth = " ";
+    }
+    return " Hom nay : " + theDay + " , ngay " + theDate + " , " + dayth + theMonth + " . " + " Bay gio la  "
+  }
+  scrollMaster();
+</SCRIPT>
+
+<!-- Mirrored from font.ssc.vn/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 21 Mar 2020 04:08:04 GMT -->
+
+</html>
+<center><b><a target="_blank" href="http://ssc.vn/">Back Forum</a></b></center>
