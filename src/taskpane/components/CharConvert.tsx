@@ -55,6 +55,8 @@ export class CharConvert extends React.Component<AppProps> {
 				console.log(`The range address was ${range.address}.`);
 				console.log(range.values);
 				const newValues = window['convertTo'](JSON.stringify(range.values), this.props.srcKey, this.props.descKey);
+				console.log(newValues);
+				
 				range.values = JSON.parse(newValues);
 			});
 		} catch (error) {
