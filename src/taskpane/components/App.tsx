@@ -10,6 +10,7 @@ import CommandBarMain from "./CommandBar"
 import NavMenu from "./NavMenu";
 import { Panel, PanelType } from 'office-ui-fabric-react/lib/Panel';
 import CharConvert from './CharConvert';
+import PageFormat from "./PageFormat";
 export interface AppProps {
   title: string;
   isOfficeInitialized: boolean;
@@ -60,6 +61,9 @@ export default class App extends React.Component<AppProps, AppState> {
             </Route>
             <Route path="/charConvert">
               <CharConvert />
+            </Route>
+            <Route path="/pageFormat">
+              <PageFormat />
             </Route>
           </Switch>
         </div>

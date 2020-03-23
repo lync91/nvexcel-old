@@ -21,13 +21,16 @@ class NavMenu extends React.Component<AppProps, AppState> {
     super(props, context);
   }
   componentWillMount () {
-    console.log(this.props);
+    console.log(history.location.pathname);
+    // const lKey = history.location.pathname.toString().substr(1)
+    this.props.dispatch({type: 'CHANGE_LOCATION', selectedKey: history.location.pathname})
+    
   }
   _onLinkClick = async (ev?: React.MouseEvent<HTMLElement, MouseEvent>, item?: INavLink) => {
     console.log(item);
     console.log(ev);
     if (!item.links) {
-      history.push('/' + item.key);
+      history.push(item.key);
       this.props.dispatch({type: 'CHANGE_LOCATION', selectedKey: item.key})
       this.props.dismissPanel();
     }
@@ -89,25 +92,19 @@ class NavMenu extends React.Component<AppProps, AppState> {
                   {
                     name: 'Định dạng trang in',
                     url: '',
-                    key: 'pageFormat',
+                    key: '/pageFormat',
                     target: '',
                   },
                   {
                     name: 'Chuyển mã tiếng Việt',
                     url: '',
-                    key: 'charConvert',
+                    key: '/charConvert',
                     target: '',
                     // onClick: () => {console.log('Clicked');
                     // }
                   }
                 ],
                 isExpanded: true
-              },
-              {
-                name: 'Notebook',
-                url: '',
-                key: 'key5',
-                disabled: true
               },
               {
                 name: 'Communication and Media',
