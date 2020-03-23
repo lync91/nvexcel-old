@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Dropdown, IDropdownOption, IDropdownStyles } from 'office-ui-fabric-react/lib/Dropdown';
 import { PrimaryButton } from 'office-ui-fabric-react';
+import { Separator } from 'office-ui-fabric-react/lib/Separator';
 import { connect } from "react-redux";
 import { CHANGE_SRC_KEY, CHANGE_DESC_KEY } from "../constants/actions";
 // import * as conV from "./vietuni";
@@ -74,7 +75,8 @@ export class CharConvert extends React.Component<AppProps> {
 		return (
 			<section className="ms-Grid">
 				<Dropdown placeholder="Chọn mã đang dùng" label="Mã đang dùng" defaultSelectedKey={this.props.srcKey} options={options} styles={dropdownStyles} onChanged={this._srcChanged} />
-				<Dropdown placeholder="Chọn mã muốn chuyển" label="Mã chuyển sang" defaultSelectedKey={this.props.descKey} options={options} styles={dropdownStyles} onChanged={this._descChanged} /><hr />
+				<Dropdown placeholder="Chọn mã muốn chuyển" label="Mã chuyển sang" defaultSelectedKey={this.props.descKey} options={options} styles={dropdownStyles} onChanged={this._descChanged} />
+				<Separator />
 				<PrimaryButton text="Chuyển mã" onClick={this._convertTo} allowDisabledFocus />
 			</section>
 		);
