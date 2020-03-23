@@ -5,6 +5,6 @@ Công cụ excel
 - Chuyển mã tiếng việt trong file excel
 
 ## Todos
-- [] Định dạng trang in G8
-- [] Công cụ lập giá vật tư
+- [ ] Định dạng trang in G8
+- [ ] Công cụ lập giá vật tư
 
