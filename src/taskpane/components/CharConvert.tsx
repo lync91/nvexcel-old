@@ -39,6 +39,8 @@ export class CharConvert extends React.Component<AppProps> {
 		super(props, context);
 	}
 	componentWillMount() {
+		console.log("OK");
+		
 	}
 	_convertTo = async () => {
 		try {
