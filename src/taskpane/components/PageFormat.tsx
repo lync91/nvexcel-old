@@ -36,25 +36,20 @@ export class PageFormat extends React.Component<AppProps> {
 	componentWillMount() {
 	}
 	_formatPage = async () => {
-		console.log(this.props);
-		
 		try {
 			await Excel.run(async context => {
 				/**
 				 * Insert your Excel code here
 				 */
 				const range = context.workbook.getSelectedRange();
-
+				const firstCol = range.getLastColumn();
+				firstCol.load("address")
 				// Read the range address
-				range.load("address");
+				range.load("addressLocal");
 				range.load("values");
 
 				await context.sync();
-				console.log(`The range address was ${range.address}.`);
-				console.log(range.values);
-				// const newValues = window['convertTo'](JSON.stringify(range.values), this.props.srcKey, this.props.descKey);
-				
-				// range.values = JSON.parse(newValues);
+				console.log(firstCol.address);
 			});
 		} catch (error) {
 			console.error(error);
@@ -89,7 +84,7 @@ export class PageFormat extends React.Component<AppProps> {
 						</Stack>
 					</div>
 				</div>
-				<Separator>Định dạng trạng in tự động</Separator>
+				<Separator>Định dạng trạng in G8</Separator>
 			</section>
 		);
 	}
