@@ -1,3 +1,4 @@
+import { TOGGLE_AUTO_INIT_PRINT_AREA } from "../constants/actions";
 const INITIAL_STATE = {
     pageSize: "A4",
     orientation: "portrait",
@@ -6,15 +7,10 @@ const INITIAL_STATE = {
 
 const pageFormat = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case 'getData':
+        case TOGGLE_AUTO_INIT_PRINT_AREA:
             return {
                 ...state,
-                selectedKey: "about",
-            }
-        case 'CHANGE_LOCATION':
-            return {
-                ...state,
-                selectedKey: action.selectedKey,
+                autoInit: action.autoInit,
             }
         default:
             return state

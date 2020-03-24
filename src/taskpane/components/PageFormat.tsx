@@ -6,7 +6,7 @@ import { Stack } from 'office-ui-fabric-react/lib/Stack';
 import { Toggle } from 'office-ui-fabric-react/lib/Toggle';
 // import { Label } from 'office-ui-fabric-react/lib/Label';
 import { connect } from "react-redux";
-import { CHANGE_SRC_KEY, CHANGE_DESC_KEY } from "../constants/actions";
+import { CHANGE_PAGE_SIZE, CHANGE_ORIENTATION, TOGGLE_AUTO_INIT_PRINT_AREA } from "../constants/actions";
 // import * as conV from "./vietuni";
 
 export interface AppProps {
@@ -59,14 +59,14 @@ export class PageFormat extends React.Component<AppProps> {
 		}
 
 	}
-	_srcChanged = (option: IDropdownOption, _index?: number) => {
-		this.props.dispatch({ type: CHANGE_SRC_KEY, srcKey: option.key })
+	_changePageSize = (option: IDropdownOption, _index?: number) => {
+		this.props.dispatch({ type: CHANGE_ORIENTATION, srcKey: option.key })
 	}
 	_descChanged = (option: IDropdownOption, _index?: number) => {
-		this.props.dispatch({ type: CHANGE_DESC_KEY, descKey: option.key })
+		this.props.dispatch({ type: CHANGE_ORIENTATION, descKey: option.key })
 	}
-	_isAutoInitChanged = () => {
-		
+	_isAutoInitChanged = (_ev: React.MouseEvent<HTMLElement>, checked: boolean) => {
+		this.props.dispatch({ type: TOGGLE_AUTO_INIT_PRINT_AREA, autoInit: checked})
 	}
 	render() {
 		// const { title, logo, message } = this.props;
@@ -75,7 +75,7 @@ export class PageFormat extends React.Component<AppProps> {
 						<Separator>Định dạng trạng in tự động</Separator>
 				<div className="ms-Grid-row">
 					<div className="ms-Grid-col ms-sm6 ms-md8 ms-lg10">
-						<Dropdown placeholder="Chọn cỡ giấy" label="Cỡ giấy" defaultSelectedKey={this.props.pageSize} options={options} styles={dropdownStyles} onChanged={this._srcChanged} />
+						<Dropdown placeholder="Chọn cỡ giấy" label="Cỡ giấy" defaultSelectedKey={this.props.pageSize} options={options} styles={dropdownStyles} onChanged={this._changePageSize} />
 						<Dropdown placeholder="Chọn kiểu in" label="Kiểu in" defaultSelectedKey={this.props.orientation} options={optKieuin} styles={dropdownStyles} onChanged={this._descChanged} />
 						<Toggle label="Tự động nhận dạng vùng in" defaultChecked={ this.props.autoInit } onText="Bật" offText="Tắt" onChange={this._isAutoInitChanged} />
 					</div>
