@@ -36,6 +36,8 @@ export class PageFormat extends React.Component<AppProps> {
 	componentWillMount() {
 	}
 	_formatPage = async () => {
+		console.log(this.props);
+		
 		try {
 			await Excel.run(async context => {
 				/**
@@ -60,10 +62,10 @@ export class PageFormat extends React.Component<AppProps> {
 
 	}
 	_changePageSize = (option: IDropdownOption, _index?: number) => {
-		this.props.dispatch({ type: CHANGE_ORIENTATION, srcKey: option.key })
+		this.props.dispatch({ type: CHANGE_PAGE_SIZE, pageSize: option.key })
 	}
-	_descChanged = (option: IDropdownOption, _index?: number) => {
-		this.props.dispatch({ type: CHANGE_ORIENTATION, descKey: option.key })
+	_changOrientation = (option: IDropdownOption, _index?: number) => {
+		this.props.dispatch({ type: CHANGE_ORIENTATION, orientation: option.key })
 	}
 	_isAutoInitChanged = (_ev: React.MouseEvent<HTMLElement>, checked: boolean) => {
 		this.props.dispatch({ type: TOGGLE_AUTO_INIT_PRINT_AREA, autoInit: checked})
@@ -76,7 +78,7 @@ export class PageFormat extends React.Component<AppProps> {
 				<div className="ms-Grid-row">
 					<div className="ms-Grid-col ms-sm6 ms-md8 ms-lg10">
 						<Dropdown placeholder="Chọn cỡ giấy" label="Cỡ giấy" defaultSelectedKey={this.props.pageSize} options={options} styles={dropdownStyles} onChanged={this._changePageSize} />
-						<Dropdown placeholder="Chọn kiểu in" label="Kiểu in" defaultSelectedKey={this.props.orientation} options={optKieuin} styles={dropdownStyles} onChanged={this._descChanged} />
+						<Dropdown placeholder="Chọn kiểu in" label="Kiểu in" defaultSelectedKey={this.props.orientation} options={optKieuin} styles={dropdownStyles} onChanged={this._changOrientation} />
 						<Toggle label="Tự động nhận dạng vùng in" defaultChecked={ this.props.autoInit } onText="Bật" offText="Tắt" onChange={this._isAutoInitChanged} />
 					</div>
 				</div>
