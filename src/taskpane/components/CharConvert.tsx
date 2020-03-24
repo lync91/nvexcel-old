@@ -39,8 +39,6 @@ export class CharConvert extends React.Component<AppProps> {
 		super(props, context);
 	}
 	componentWillMount() {
-		console.log("OK");
-		
 	}
 	_convertTo = async () => {
 		try {
@@ -79,6 +77,8 @@ export class CharConvert extends React.Component<AppProps> {
 				<Dropdown placeholder="Chọn mã đang dùng" label="Mã đang dùng" defaultSelectedKey={this.props.srcKey} options={options} styles={dropdownStyles} onChanged={this._srcChanged} />
 				<Dropdown placeholder="Chọn mã muốn chuyển" label="Mã chuyển sang" defaultSelectedKey={this.props.descKey} options={options} styles={dropdownStyles} onChanged={this._descChanged} />
 				<Separator />
+				<PrimaryButton text="Chuyển mã" onClick={this._convertTo} allowDisabledFocus />
+				<PrimaryButton text="Chuyển mã" onClick={this._convertTo} allowDisabledFocus />
 				<PrimaryButton text="Chuyển mã" onClick={this._convertTo} allowDisabledFocus />
 			</section>
 		);

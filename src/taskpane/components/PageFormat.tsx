@@ -2,6 +2,7 @@ import * as React from "react";
 import { Dropdown, IDropdownOption, IDropdownStyles } from 'office-ui-fabric-react/lib/Dropdown';
 import { PrimaryButton } from 'office-ui-fabric-react';
 import { Separator } from 'office-ui-fabric-react/lib/Separator';
+import { Label } from 'office-ui-fabric-react/lib/Label';
 import { connect } from "react-redux";
 import { CHANGE_SRC_KEY, CHANGE_DESC_KEY } from "../constants/actions";
 // import * as conV from "./vietuni";
@@ -23,15 +24,8 @@ const dropdownStyles: Partial<IDropdownStyles> = {
 };
 
 const options: IDropdownOption[] = [
-	{ key: "UNICODE", text: "UNICODE" },
-	{ key: "Unicode to hop", text: "Unicode to hop" },
-	{ key: "UTF-8", text: "UTF-8" },
-	{ key: "&#Unicode;", text: "&#Unicode;" },
-	{ key: "VNI-WIN", text: "VNI-WIN" },
-	{ key: "TCVN-3", text: "TCVN-3" },
-	{ key: "VISCII", text: "VISCII" },
-	{ key: "VPS-Win", text: "VPS-Win" },
-	{ key: "VIQR", text: "VIQR" }
+	{ key: "A4", text: "A4" },
+	{ key: "A3", text: "A3" },
 ];
 
 export class PageFormat extends React.Component<AppProps> {
@@ -74,9 +68,10 @@ export class PageFormat extends React.Component<AppProps> {
 		// const { title, logo, message } = this.props;
 		return (
 			<section className="ms-Grid">
+				<Separator>Định dạng trạng in tự động</Separator>
 				<Dropdown placeholder="Chọn mã đang dùng" label="Mã đang dùng" defaultSelectedKey={this.props.srcKey} options={options} styles={dropdownStyles} onChanged={this._srcChanged} />
 				<Dropdown placeholder="Chọn mã muốn chuyển" label="Mã chuyển sang" defaultSelectedKey={this.props.descKey} options={options} styles={dropdownStyles} onChanged={this._descChanged} />
-				<Separator />
+				<Separator>Định dạng trạng in tự động</Separator>
 				<PrimaryButton text="Chuyển mã" onClick={this._convertTo} allowDisabledFocus />
 			</section>
 		);
