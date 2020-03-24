@@ -7,5 +7,4 @@ Công cụ excel giúp những người làm dự toán thực hiện công vi�
 ## Todos
 - [ ] Định dạng trang in G8
 - [ ] Công cụ lập giá vật tư
-- [ ] Công cụ lập giá vật tư
 
