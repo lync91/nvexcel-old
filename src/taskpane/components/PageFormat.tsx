@@ -13,7 +13,8 @@ export interface AppProps {
 	dispatch: any;
 	pageSize: string;
 	orientation: string;
-	autoInit: boolean
+	autoInit: boolean;
+	blackAndWhite: boolean;
 }
 
 const dropdownStyles: Partial<IDropdownStyles> = {
@@ -50,10 +51,24 @@ export class PageFormat extends React.Component<AppProps> {
 				const printArea = range.address.slice(range.address.indexOf('!') + 1, range.address.length);
 				console.log(printArea);
 				ws.pageLayout.setPrintArea(printArea);
-				ws.pageLayout.topMargin = 2;
-				ws.pageLayout.topMargin = 2;
-				ws.pageLayout.topMargin = 2;
-				ws.pageLayout.topMargin = 2;
+				if (this.props.orientation === "portrait") {
+					ws.pageLayout.topMargin = 40;
+					ws.pageLayout.bottomMargin = 40;
+					ws.pageLayout.leftMargin = 50;
+					ws.pageLayout.rightMargin = 40;
+				}
+				if (this.props.orientation === "landscape") {
+					ws.pageLayout.topMargin = 50;
+					ws.pageLayout.bottomMargin = 40;
+					ws.pageLayout.leftMargin = 40;
+					ws.pageLayout.rightMargin = 40;
+				}
+				ws.pageLayout.zoom = { horizontalFitToPages: 1 };
+				ws.pageLayout.centerHorizontally = true;
+				ws.pageLayout.centerVertically = true;
+				ws.pageLayout.blackAndWhite = this.props.blackAndWhite;
+				ws.pageLayout.blackAndWhite = this.props.blackAndWhite;
+				
 
 			});
 		} catch (error) {
@@ -80,6 +95,7 @@ export class PageFormat extends React.Component<AppProps> {
 						<Dropdown placeholder="Chọn cỡ giấy" label="Cỡ giấy" defaultSelectedKey={this.props.pageSize} options={options} styles={dropdownStyles} onChanged={this._changePageSize} />
 						<Dropdown placeholder="Chọn kiểu in" label="Kiểu in" defaultSelectedKey={this.props.orientation} options={optKieuin} styles={dropdownStyles} onChanged={this._changOrientation} />
 						<Toggle className="mt-8" defaultChecked={ this.props.autoInit } onText="Tự động nhận dạng vùng in" offText="Tự động nhận dạng vùng in" onChange={this._isAutoInitChanged} />
+						<Toggle className="mt-8" defaultChecked={ this.props.blackAndWhite } onText="In đen trắng" offText="In đen trắng" onChange={this._isAutoInitChanged} />
 					</div>
 				</div>
 				<div className="ms-Grid-row">
@@ -107,7 +123,8 @@ const mapStateToProps = (state) => {
 	return {
 		pageSize: state.pageFormat.pageSize,
 		orientation: state.pageFormat.orientation,
-		autoInit: state.pageFormat.autoInit
+		autoInit: state.pageFormat.autoInit,
+		blackAndWhite: state.pageFormat.blackAndWhite
 	}
 }
 export default connect(mapStateToProps)(PageFormat)

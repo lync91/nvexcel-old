@@ -1,8 +1,9 @@
-import { CHANGE_PAGE_SIZE, CHANGE_ORIENTATION, TOGGLE_AUTO_INIT_PRINT_AREA } from "../constants/actions";
+import { CHANGE_PAGE_SIZE, CHANGE_ORIENTATION, TOGGLE_AUTO_INIT_PRINT_AREA, CHANGE_BLACK_ANĐ_WHITE } from "../constants/actions";
 const INITIAL_STATE = {
     pageSize: "a4",
     orientation: "portrait",
-    autoInit: false
+    autoInit: false,
+    blackAndWhite: true
 };
 
 const pageFormat = (state = INITIAL_STATE, action) => {
@@ -21,6 +22,11 @@ const pageFormat = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 orientation: action.orientation,
+            }
+        case CHANGE_BLACK_ANĐ_WHITE:
+            return {
+                ...state,
+                blackAndWhite: action.blackAndWhite,
             }
         default:
             return state
