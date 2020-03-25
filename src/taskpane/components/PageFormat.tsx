@@ -45,15 +45,15 @@ export class PageFormat extends React.Component<AppProps> {
 				ws.pageLayout.paperSize = Excel.PaperType[this.props.pageSize];
 				ws.pageLayout.orientation = Excel.PageOrientation[this.props.orientation]
 				const range = context.workbook.getSelectedRange();
-				// const firstCol = range.getLastColumn();
-				// firstCol.load("address")
-				// Read the range address
 				range.load("address");
 				await context.sync();
-				// console.log(firstCol.address);
 				const printArea = range.address.slice(range.address.indexOf('!') + 1, range.address.length);
 				console.log(printArea);
-				ws.pageLayout.setPrintArea(printArea)
+				ws.pageLayout.setPrintArea(printArea);
+				ws.pageLayout.topMargin = 2;
+				ws.pageLayout.topMargin = 2;
+				ws.pageLayout.topMargin = 2;
+				ws.pageLayout.topMargin = 2;
 
 			});
 		} catch (error) {
@@ -76,14 +76,14 @@ export class PageFormat extends React.Component<AppProps> {
 			<section className="ms-Grid">
 						<Separator>Định dạng trạng in tự động</Separator>
 				<div className="ms-Grid-row">
-					<div className="ms-Grid-col ms-sm6 ms-md8 ms-lg10">
+					<div className="ms-Grid-col ms-sm12 ms-lg12">
 						<Dropdown placeholder="Chọn cỡ giấy" label="Cỡ giấy" defaultSelectedKey={this.props.pageSize} options={options} styles={dropdownStyles} onChanged={this._changePageSize} />
 						<Dropdown placeholder="Chọn kiểu in" label="Kiểu in" defaultSelectedKey={this.props.orientation} options={optKieuin} styles={dropdownStyles} onChanged={this._changOrientation} />
-						<Toggle defaultChecked={ this.props.autoInit } onText="Tự động nhận dạng vùng in" offText="Không tự nhận dạng vùng in" onChange={this._isAutoInitChanged} />
+						<Toggle className="mt-8" defaultChecked={ this.props.autoInit } onText="Tự động nhận dạng vùng in" offText="Tự động nhận dạng vùng in" onChange={this._isAutoInitChanged} />
 					</div>
 				</div>
 				<div className="ms-Grid-row">
-					<div className="ms-Grid-col ms-sm6 ms-md8 ms-lg10 mt-8">
+					<div className="ms-Grid-col ms-sm12 mt-8">
 						<Stack horizontal>
 							<PrimaryButton text="Định dạng" onClick={this._formatPage} allowDisabledFocus />
 						</Stack>
