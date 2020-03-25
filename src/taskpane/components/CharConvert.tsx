@@ -79,7 +79,6 @@ export class CharConvert extends React.Component<AppProps> {
 				<Separator />
 				<PrimaryButton text="Chuyển mã" onClick={this._convertTo} allowDisabledFocus />
 				<PrimaryButton text="Chuyển mã" onClick={this._convertTo} allowDisabledFocus />
-				<PrimaryButton text="Chuyển mã" onClick={this._convertTo} allowDisabledFocus />
 			</section>
 		);
 	}

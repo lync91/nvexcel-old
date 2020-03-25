@@ -91,9 +91,10 @@ module.exports = async (env, options)  => {
         "Access-Control-Allow-Origin": "*"
       },      
       https: {
-        key: fs.readFileSync('cert/server.key'),
-        cert: fs.readFileSync('cert/server.crt'),
+        key: fs.readFileSync('../cert/privkey.pem'),
+        cert: fs.readFileSync('../cert/cert.pem'),
       },
+      disableHostCheck: true,
       historyApiFallback: true,
       port: process.env.npm_package_config_dev_server_port || 3000
     }
