@@ -21,8 +21,8 @@ const dropdownStyles: Partial<IDropdownStyles> = {
 };
 
 const options: IDropdownOption[] = [
-	{ key: "A4", text: "A4" },
-	{ key: "A3", text: "A3" },
+	{ key: "a4", text: "A4" },
+	{ key: "a3", text: "A3" },
 ];
 const optKieuin: IDropdownOption[] = [
 	{ key: "portrait", text: "Dọc" },
@@ -41,15 +41,20 @@ export class PageFormat extends React.Component<AppProps> {
 				/**
 				 * Insert your Excel code here
 				 */
+				const ws = context.workbook.worksheets.getActiveWorksheet();
+				ws.pageLayout.paperSize = Excel.PaperType[this.props.pageSize];
+				ws.pageLayout.orientation = Excel.PageOrientation[this.props.orientation]
 				const range = context.workbook.getSelectedRange();
-				const firstCol = range.getLastColumn();
-				firstCol.load("address")
+				// const firstCol = range.getLastColumn();
+				// firstCol.load("address")
 				// Read the range address
-				range.load("addressLocal");
-				range.load("values");
-
+				range.load("address");
 				await context.sync();
-				console.log(firstCol.address);
+				// console.log(firstCol.address);
+				const printArea = range.address.slice(range.address.indexOf('!') + 1, range.address.length);
+				console.log(printArea);
+				ws.pageLayout.setPrintArea(printArea)
+
 			});
 		} catch (error) {
 			console.error(error);
@@ -74,7 +79,7 @@ export class PageFormat extends React.Component<AppProps> {
 					<div className="ms-Grid-col ms-sm6 ms-md8 ms-lg10">
 						<Dropdown placeholder="Chọn cỡ giấy" label="Cỡ giấy" defaultSelectedKey={this.props.pageSize} options={options} styles={dropdownStyles} onChanged={this._changePageSize} />
 						<Dropdown placeholder="Chọn kiểu in" label="Kiểu in" defaultSelectedKey={this.props.orientation} options={optKieuin} styles={dropdownStyles} onChanged={this._changOrientation} />
-						<Toggle label="Tự động nhận dạng vùng in" defaultChecked={ this.props.autoInit } onText="Bật" offText="Tắt" onChange={this._isAutoInitChanged} />
+						<Toggle defaultChecked={ this.props.autoInit } onText="Tự động nhận dạng vùng in" offText="Không tự nhận dạng vùng in" onChange={this._isAutoInitChanged} />
 					</div>
 				</div>
 				<div className="ms-Grid-row">
@@ -85,6 +90,15 @@ export class PageFormat extends React.Component<AppProps> {
 					</div>
 				</div>
 				<Separator>Định dạng trạng in G8</Separator>
+				<div className="ms-Grid-row">
+					<div>
+					<Toggle label="Tự động nhận dạng vùng in" defaultChecked={ this.props.autoInit } onText="Bật" offText="Tắt" onChange={this._isAutoInitChanged} />
+					</div>
+					<div>
+						<Stack>
+						</Stack>
+					</div>
+				</div>
 			</section>
 		);
 	}
