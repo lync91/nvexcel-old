@@ -1,10 +1,10 @@
-import * as React from 'react';
+import React, { Component }  from 'react';
 import { CommandBar, ICommandBarItemProps } from 'office-ui-fabric-react/lib/CommandBar';
 // import { IButtonProps } from 'office-ui-fabric-react/lib/Button';
 
 // const overflowProps: IButtonProps = { ariaLabel: 'More commands' };
 
-export default class CommandBarMain extends React.Component<{view: () => boolean | void}> {
+export default class CommandBarMain extends Component<{view: () => boolean | void}> {
     constructor(props, context) {
         super(props, context);
         this.state = {};

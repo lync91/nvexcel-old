@@ -1,7 +1,5 @@
-import * as React from 'react';
+import React, { Component } from 'react';
 import { Nav, INavLink } from 'office-ui-fabric-react/lib/Nav';
-// import { useHistory } from "react-router-dom";
-// import { withRouter } from 'react-router';
 import { connect } from "react-redux";
 import history from './history'
 
@@ -15,7 +13,7 @@ export interface AppState {
   selectedKey: string
 }
 
-class NavMenu extends React.Component<AppProps, AppState> {
+class NavMenu extends Component<AppProps, AppState> {
   selectedKey: string;
   constructor(props, context) {
     super(props, context);

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { Component } from "react";
 import { Dropdown, IDropdownOption, IDropdownStyles } from 'office-ui-fabric-react/lib/Dropdown';
 import { PrimaryButton } from 'office-ui-fabric-react';
 import { Separator } from 'office-ui-fabric-react/lib/Separator';
@@ -34,7 +34,7 @@ const options: IDropdownOption[] = [
 	{ key: "VIQR", text: "VIQR" }
 ];
 
-export class CharConvert extends React.Component<AppProps> {
+export class CharConvert extends Component<AppProps> {
 	constructor(props, context) {
 		super(props, context);
 	}

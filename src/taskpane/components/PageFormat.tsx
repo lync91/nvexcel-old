@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { Component } from "react";
 import { Dropdown, IDropdownOption, IDropdownStyles } from 'office-ui-fabric-react/lib/Dropdown';
 import { PrimaryButton } from 'office-ui-fabric-react';
 import { Separator } from 'office-ui-fabric-react/lib/Separator';
@@ -30,7 +30,7 @@ const optKieuin: IDropdownOption[] = [
 	{ key: "landscape", text: "Ngang" },
 ];
 
-export class PageFormat extends React.Component<AppProps> {
+export class PageFormat extends Component<AppProps> {
 	constructor(props, context) {
 		super(props, context);
 	}
@@ -46,16 +46,31 @@ export class PageFormat extends React.Component<AppProps> {
 				ws.pageLayout.paperSize = Excel.PaperType[this.props.pageSize];
 				ws.pageLayout.orientation = Excel.PageOrientation[this.props.orientation]
 				const range = context.workbook.getSelectedRange();
-				range.load("address");
+				const rangeA = ws.getRange('A:ZZ');
+				const rangeB = ws.getRange('A4:ZZ4');
+				const lastRow = rangeA.find("*", {
+					completeMatch: true, // find will match the whole cell value
+					matchCase: false, // find will not match case
+					searchDirection: Excel.SearchDirection.backwards // find will start searching at the beginning of the range
+				})
+				const lastCol = rangeB.findOrNullObject("*", {
+					completeMatch: true, // find will match the whole cell value
+					matchCase: false, // find will not match case
+					searchDirection: Excel.SearchDirection.backwards // find will start searching at the beginning of the range
+				})
+				lastRow.load("address");
+				lastCol.load("address");
 				await context.sync();
+				console.log('lastRow', lastRow.address);
+				console.log('lastCol', lastCol.address);
+				
 				const printArea = range.address.slice(range.address.indexOf('!') + 1, range.address.length);
-				console.log(printArea);
 				ws.pageLayout.setPrintArea(printArea);
 				if (this.props.orientation === "portrait") {
 					ws.pageLayout.topMargin = 40;
 					ws.pageLayout.bottomMargin = 40;
 					ws.pageLayout.leftMargin = 50;
-					ws.pageLayout.rightMargin = 40;
+					ws.pageLayout.rightMargin = 20;
 				}
 				if (this.props.orientation === "landscape") {
 					ws.pageLayout.topMargin = 50;
@@ -65,11 +80,9 @@ export class PageFormat extends React.Component<AppProps> {
 				}
 				ws.pageLayout.zoom = { horizontalFitToPages: 1 };
 				ws.pageLayout.centerHorizontally = true;
-				ws.pageLayout.centerVertically = true;
+				ws.pageLayout.centerVertically = false;
 				ws.pageLayout.blackAndWhite = this.props.blackAndWhite;
 				ws.pageLayout.blackAndWhite = this.props.blackAndWhite;
-				
-
 			});
 		} catch (error) {
 			console.error(error);

@@ -14,8 +14,8 @@ module.exports = async (env, options)  => {
       vendor: [
         'react',
         'react-dom',
-        'core-js',
-        'office-ui-fabric-react'
+        // 'core-js',
+        // 'office-ui-fabric-react'
     ],
     taskpane: [
         'react-hot-loader/patch',
@@ -63,12 +63,12 @@ module.exports = async (env, options)  => {
       new HtmlWebpackPlugin({
         filename: "taskpane.html",
           template: './src/taskpane/taskpane.html',
-          chunks: ['taskpane', 'vendor', 'polyfills']
+          chunks: ['taskpane', 'vendor']
       }),
       new HtmlWebpackPlugin({
         filename: "index.html",
           template: './src/taskpane/taskpane.html',
-          chunks: ['taskpane', 'vendor', 'polyfills']
+          chunks: ['taskpane', 'vendor']
       }),
       new HtmlWebpackPlugin({
           filename: "commands.html",
@@ -87,6 +87,9 @@ module.exports = async (env, options)  => {
       })
     ],
     devServer: {
+      watchOptions: {
+        poll: true
+    },
       headers: {
         "Access-Control-Allow-Origin": "*"
       },      
@@ -97,6 +100,9 @@ module.exports = async (env, options)  => {
       disableHostCheck: true,
       historyApiFallback: true,
       port: process.env.npm_package_config_dev_server_port || 3000
+    },
+    performance: {
+      hints: false
     }
   };
 

@@ -15,7 +15,7 @@
     "build": "webpack -p --mode production --https false",
     "build:dev": "webpack --mode development --https false",
     "build-dev": "webpack --mode development --https false && echo . && echo . && echo . && echo Please use 'build:dev' instead of 'build-dev'.",
-    "dev-server": "webpack-dev-server --host 0.0.0.0 --mode development --watch",
+    "dev-server": "webpack-dev-server --host 0.0.0.0 --mode production",
     "lint": "office-addin-lint check",
     "lint:fix": "office-addin-lint fix",
     "prettier": "office-addin-lint prettier",

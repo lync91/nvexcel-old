@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { Component } from "react";
 import { Spinner, SpinnerType } from "office-ui-fabric-react";
 /* global Spinner */
 
@@ -8,7 +8,7 @@ export interface ProgressProps {
   title: string;
 }
 
-export default class Progress extends React.Component<ProgressProps> {
+export default class Progress extends Component<ProgressProps> {
   render() {
     const { logo, message, title } = this.props;
 
@@ -19,5 +19,6 @@ export default class Progress extends React.Component<ProgressProps> {
         <Spinner type={SpinnerType.large} label={message} />
       </section>
     );
+    
   }
 }
